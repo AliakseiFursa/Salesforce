@@ -3,30 +3,41 @@ package pages;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage extends BasePage{
 
-    public static final By USER_INPUT = By.id("username");
-    public static final By PASSWORD_INPUT = By.id("password");
-    public static final By LOGIN_BUTTON = By.id("Login");
+    @FindBy(id = "username")
+    WebElement userInput;
+    @FindBy(id = "password")
+    WebElement passwordInput;
+    @FindBy(id = "Login")
+    WebElement loginButton;
     public static final By ERROR_MESSAGE = By.id("error");
 
     public LoginPage (WebDriver driver) {
         super(driver);
     }
 
+    @Override
     @Step("Opening login page")
-    public void openLoginPage() {
+    public void openPage() {
         driver.get(baseURL);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(LOGIN_BUTTON));
+        PageFactory.initElements(driver, this);
+    }
+
+    @Override
+    public boolean isPageOpened() {
+        return waitForElement(By.id("Login"));
     }
 
     @Step("Log in by user '{user}' with password '{password}'")
     public void login(String user, String password) {
-        driver.findElement(USER_INPUT).sendKeys(user);
-        driver.findElement(PASSWORD_INPUT).sendKeys(password);
-        driver.findElement(LOGIN_BUTTON).click();
+        userInput.sendKeys(user);
+        passwordInput.sendKeys(password);
+        loginButton.click();
     }
 
     @Step("Getting error message")

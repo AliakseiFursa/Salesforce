@@ -13,6 +13,15 @@ public class ContactPage extends BasePage{
         super(driver);
     }
 
+    @Override
+    public void openPage() {
+    }
+
+    @Override
+    public boolean isPageOpened() {
+        return waitForElement(PAGE_TITLE);
+    }
+
     @Step("Getting page title")
     public String getPageTitle() {
         return driver.findElement(PAGE_TITLE).getText();
