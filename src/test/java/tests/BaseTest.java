@@ -27,8 +27,6 @@ public class BaseTest {
     AccountPage accountPage;
     ContactsListPage contactsListPage;
     ContactPage contactPage;
-    Account account;
-    Contact contact;
     AccountSteps accountSteps;
     ContactSteps contactSteps;
     LoginSteps loginSteps;
@@ -63,10 +61,6 @@ public class BaseTest {
         accountPage = new AccountPage(driver);
         contactsListPage = new ContactsListPage(driver);
         contactPage = new ContactPage(driver);
-        account = new Account("TeachMeSkills", "teachmeskills.by", "Analyst", "256789121",
-                "256789122", "Father", "Apparel", "5", "100000", "Hello");
-        contact = new Contact("Mr.", "Al", "Fur", "TeachMeSkills", "2235616",
-                "Good boy", "Minsk");
         accountSteps = new AccountSteps(driver);
         contactSteps = new ContactSteps(driver);
         loginSteps = new LoginSteps(driver);

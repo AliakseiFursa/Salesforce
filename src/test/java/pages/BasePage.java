@@ -1,5 +1,6 @@
 package pages;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -8,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+@Log4j2
 public abstract class BasePage {
 
     WebDriver driver;
@@ -27,6 +29,8 @@ public abstract class BasePage {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         } catch (TimeoutException ex) {
+            log.error("Cannot find element using locator {}", locator);
+            log.error(ex.getLocalizedMessage());
             return false;
         }
         return true;

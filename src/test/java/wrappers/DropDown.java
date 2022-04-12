@@ -1,8 +1,10 @@
 package wrappers;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+@Log4j2
 public class DropDown {
 
     WebDriver driver;
@@ -16,6 +18,7 @@ public class DropDown {
     }
 
     public void select(String option) {
+        log.info("Choosing {} in {}", option, label);
         if (type.equalsIgnoreCase("Account")) {
             driver.findElement(By.xpath(
                     String.format("//span[text()='%s']/ancestor::div[contains(@class, 'uiInput')]//a", label)

@@ -2,12 +2,14 @@ package pages;
 
 import dto.Contact;
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import wrappers.DropDown;
 import wrappers.Input;
 import wrappers.TextArea;
 
+@Log4j2
 public class NewContactModal extends BasePage{
 
     WebDriver driver;
@@ -21,6 +23,7 @@ public class NewContactModal extends BasePage{
 
     @Override
     public void openPage() {
+        log.info("Opening New Contact Modal page");
         driver.get("https://tms-d.lightning.force.com/lightning/o/Contact/new?count=2&nooverride=1&useRecordTypeCheck=" +
                 "1&navigationLocation=LIST_VIEW&uid=164935824562090156&backgroundContext=" +
                 "%2Flightning%2Fo%2FContact%2Flist%3FfilterName%3DRecent");
@@ -33,6 +36,7 @@ public class NewContactModal extends BasePage{
 
     @Step("Filling contact information")
     public void fillInContactInformation(Contact contact) {
+        log.info("Creation of contact {}", contact);
         new DropDown(driver, "Salutation", "Contact").select(contact.getSalutation());
         new Input(driver, "First Name", "Contact").write(contact.getFirstName());
         new Input(driver, "Last Name", "Contact").write(contact.getLastName());
