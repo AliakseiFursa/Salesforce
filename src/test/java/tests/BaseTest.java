@@ -1,21 +1,25 @@
 package tests;
 
-import dto.Account;
-import dto.Contact;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 import pages.*;
 import steps.AccountSteps;
 import steps.ContactSteps;
 import steps.LoginSteps;
+import tests.base.TestListener;
 
 import java.time.Duration;
 
+@Listeners(TestListener.class)
 public class BaseTest {
 
     WebDriver driver;
@@ -33,8 +37,8 @@ public class BaseTest {
 
     @Parameters({"browser"})
     @BeforeMethod(description = "Opening Browser")
-    public void setUp(/*String browser, ITestContext testContext*/) {
-/*        if (browser.equalsIgnoreCase("chrome")) {
+    public void setUp(String browser, ITestContext testContext) {
+        if (browser.equalsIgnoreCase("chrome")) {
             WebDriverManager.chromedriver().setup();
             ChromeOptions options = new ChromeOptions();
             options.setHeadless(true);
@@ -44,12 +48,8 @@ public class BaseTest {
             FirefoxOptions options = new FirefoxOptions();
             options.setHeadless(false);
             driver = new FirefoxDriver(options);
-        }*/
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
-        options.setHeadless(false);
-        driver = new ChromeDriver(options);
-//        testContext.setAttribute("driver", driver);
+        }
+        testContext.setAttribute("driver", driver);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
@@ -68,6 +68,8 @@ public class BaseTest {
 
     @AfterMethod(alwaysRun = true, description = "Closing Browser")
     public void close() {
-        driver.quit();
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }

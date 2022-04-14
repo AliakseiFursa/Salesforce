@@ -29,6 +29,7 @@ public class ContactsListPage extends BasePage{
 
     @Step("Creating new contact")
     public void createNewContact() {
+        log.info("Opening New Contact Modal page");
         driver.findElement(NEW_CONTACT_BUTTON).click();
     }
 }
