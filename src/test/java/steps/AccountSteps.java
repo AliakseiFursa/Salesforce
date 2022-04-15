@@ -22,7 +22,7 @@ public class AccountSteps {
 
     @Step("Creation of new account: '{account.accountName}'")
     public void create(Account account) {
-        log.info("Creation of new account");
+        log.info("Creation of new account '{}'", account.getAccountName());
         accountsListPage.openPage();
         assertTrue(accountsListPage.isPageOpened(), "Accounts list page wasn't opened");
         accountsListPage.createNewAccount();
