@@ -1,8 +1,10 @@
 package wrappers;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+@Log4j2
 public class TextArea {
 
     WebDriver driver;
@@ -16,6 +18,7 @@ public class TextArea {
     }
 
     public void write(String text) {
+        log.info("Writing {} into {}", text, label);
         if (type.equalsIgnoreCase("Account")) {
             driver.findElement(By.xpath
                     (String.format("//div[contains(@class, 'modal-body')]//span[text()='%s']/" +

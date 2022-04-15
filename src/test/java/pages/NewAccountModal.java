@@ -2,12 +2,14 @@ package pages;
 
 import dto.Account;
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import wrappers.DropDown;
 import wrappers.Input;
 import wrappers.TextArea;
 
+@Log4j2
 public class NewAccountModal extends BasePage{
 
     public static final By SAVE_BUTTON = By.xpath("//div[contains(@class, 'modal-body')]//button[@title='Save']"); //By.cssSelector("[title=Save]");
@@ -19,9 +21,8 @@ public class NewAccountModal extends BasePage{
 
     @Override
     public void openPage() {
-        driver.get("https://tms-d.lightning.force.com/lightning/o/Account/new?count=1&nooverride=1&useRecordTypeCheck=" +
-                "1&navigationLocation=LIST_VIEW&uid=164935814282050681&backgroundContext=" +
-                "%2Flightning%2Fo%2FAccount%2Flist%3FfilterName%3DRecent");
+        log.info("Opening New Account Modal page");
+        driver.get(NewAccountModalURL);
     }
 
     @Override
@@ -31,6 +32,7 @@ public class NewAccountModal extends BasePage{
 
     @Step("Filling account information")
     public void fillInAccountInformation(Account account) {
+        log.info("Creation of account {}", account);
         new Input(driver, "Account Name", "Account").write(account.getAccountName());
         new Input(driver, "Website", "Account").write(account.getWebsite());
         new DropDown(driver, "Type", "Account").select(account.getType());

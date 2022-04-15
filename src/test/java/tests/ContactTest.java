@@ -1,5 +1,6 @@
 package tests;
 
+import dto.Contact;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
@@ -11,6 +12,15 @@ public class ContactTest extends BaseTest{
     public void newContactShouldBeCreated() {
         loginSteps.login("alex.fursa89-gtaj@force.com", "FireFox_1989");
         assertTrue(salesNavigationMenuBarPage.isPageOpened(), "Home page wasn't opened");
+        Contact contact = Contact.builder()
+                .salutation("Mr.")
+                .firstName("Al")
+                .lastName("Fur")
+                .accountName("TeachMeSkills")
+                .phone("2235616")
+                .description("Good boy")
+                .mailingStreet("Minsk")
+                .build();
         contactSteps.create(contact);
         assertTrue(contactPage.isPageOpened(), "Contact page wasn't opened");
         assertEquals(contactPage.getContactName(), "Mr. Al Fur", "Contact name doesn't match");
@@ -20,7 +30,15 @@ public class ContactTest extends BaseTest{
     public void errorMessageShouldBeDisplayedIfNecessaryInformationIsEmpty() {
         loginSteps.login("alex.fursa89-gtaj@force.com", "FireFox_1989");
         assertTrue(salesNavigationMenuBarPage.isPageOpened(), "Home page wasn't opened");
-        contact.setAccountName("");
+        Contact contact = Contact.builder()
+                .salutation("Mr.")
+                .firstName("Al")
+                .lastName("Fur")
+                .accountName("")
+                .phone("2235616")
+                .description("Good boy")
+                .mailingStreet("Minsk")
+                .build();
         contactSteps.create(contact);
         assertEquals(newContactModal.getErrorMessage(), "We hit a snag.",
                 "Error message doesn't match or wasn't detected");
