@@ -29,6 +29,7 @@ public class AccountsListPage extends BasePage{
 
     @Step("Creating new account")
     public void createNewAccount() {
+        log.info("Opening New Account Modal page");
         driver.findElement(NEW_ACCOUNT_BUTTON).click();
     }
 }

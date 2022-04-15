@@ -17,7 +17,7 @@ public class LoginSteps {
         salesNavigationMenuBarPage = new SalesNavigationMenuBarPage(driver);
     }
 
-    @Step("Log in with: user - '{user}', password '{password}'")
+    @Step("Log in with: user - '{user}', password - '{password}'")
     public void login(String user, String password) {
         loginPage.openPage();
         assertTrue(loginPage.isPageOpened(), "Login page wasn't opened");
