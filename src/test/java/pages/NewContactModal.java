@@ -24,9 +24,7 @@ public class NewContactModal extends BasePage{
     @Override
     public void openPage() {
         log.info("Opening New Contact Modal page");
-        driver.get("https://tms-d.lightning.force.com/lightning/o/Contact/new?count=2&nooverride=1&useRecordTypeCheck=" +
-                "1&navigationLocation=LIST_VIEW&uid=164935824562090156&backgroundContext=" +
-                "%2Flightning%2Fo%2FContact%2Flist%3FfilterName%3DRecent");
+        driver.get(NewContactModalURL);
     }
 
     @Override
