@@ -15,6 +15,12 @@ public abstract class BasePage {
     WebDriver driver;
     WebDriverWait wait;
     String baseURL = "https://tms-d.my.salesforce.com/";
+    String NewAccountModalURL = "https://tms-d.lightning.force.com/lightning/o/Account/new?count=1&nooverride=" +
+            "1&useRecordTypeCheck=1&navigationLocation=LIST_VIEW&uid=164935814282050681&backgroundContext=" +
+            "%2Flightning%2Fo%2FAccount%2Flist%3FfilterName%3DRecent";
+    String NewContactModalURL = "https://tms-d.lightning.force.com/lightning/o/Contact/new?count=2&nooverride=" +
+            "1&useRecordTypeCheck=1&navigationLocation=LIST_VIEW&uid=164935824562090156&backgroundContext=" +
+            "%2Flightning%2Fo%2FContact%2Flist%3FfilterName%3DRecent";
 
     public BasePage(WebDriver driver) {
         this.driver = driver;

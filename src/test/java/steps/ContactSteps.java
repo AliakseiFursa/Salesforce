@@ -22,7 +22,7 @@ public class ContactSteps {
 
     @Step("Creation of new contact")
     public void create(Contact contact) {
-        log.info("Creation of new contact");
+        log.info("Creation of new contact for account '{}'", contact.getAccountName());
         contactsListPage.openPage();
         assertTrue(contactsListPage.isPageOpened(), "Contacts list page wasn't opened");
         contactsListPage.createNewContact();

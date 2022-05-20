@@ -22,9 +22,7 @@ public class NewAccountModal extends BasePage{
     @Override
     public void openPage() {
         log.info("Opening New Account Modal page");
-        driver.get("https://tms-d.lightning.force.com/lightning/o/Account/new?count=1&nooverride=1&useRecordTypeCheck=" +
-                "1&navigationLocation=LIST_VIEW&uid=164935814282050681&backgroundContext=" +
-                "%2Flightning%2Fo%2FAccount%2Flist%3FfilterName%3DRecent");
+        driver.get(NewAccountModalURL);
     }
 
     @Override
