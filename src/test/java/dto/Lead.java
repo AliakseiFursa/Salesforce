@@ -7,7 +7,7 @@ import lombok.Data;
 @Builder
 @Data
 @AllArgsConstructor
-public class Leads {
+public class Lead {
 
     String salutation;
     String firstName;

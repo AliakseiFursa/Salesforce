@@ -1,5 +1,6 @@
 package pages;
 
+import dto.Account;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
@@ -10,6 +11,7 @@ public class AccountsListPage extends BasePage{
 
     public static final By PAGE_TITLE = By.xpath("//div[contains(@class, 'slds-breadcrumb__item')]//span[text()='Accounts']");
     public static final By NEW_ACCOUNT_BUTTON = By.cssSelector("a[title=New]");
+    String accountName = "//tbody//a[text()='%s']";
 
     public AccountsListPage(WebDriver driver) {
         super(driver);
@@ -19,7 +21,7 @@ public class AccountsListPage extends BasePage{
     @Step("Opening accounts page")
     public void openPage() {
         log.info("Opening accounts page");
-        driver.get("https://tms-d.lightning.force.com/lightning/o/Account/list?filterName=Recent");
+        driver.get(accountsListPageURL);
     }
 
     @Override
@@ -29,7 +31,11 @@ public class AccountsListPage extends BasePage{
 
     @Step("Creating new account")
     public void createNewAccount() {
-        log.info("Opening New Account Modal page");
         driver.findElement(NEW_ACCOUNT_BUTTON).click();
+    }
+
+    @Step("Opening account")
+    public void openAccount(Account account) {
+        driver.findElement(By.xpath(String.format(accountName, account.getAccountName()))).click();
     }
 }

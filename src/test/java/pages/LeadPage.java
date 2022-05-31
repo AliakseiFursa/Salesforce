@@ -6,13 +6,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 @Log4j2
-public class AccountPage extends BasePage{
+public class LeadPage extends BasePage{
 
     public static final By PAGE_TITLE = By.xpath("//div[contains(@class, 'entityNameTitle')]");
-    public static final By ACCOUNT_NAME = By.xpath("//div[contains(@class, 'entityNameTitle')]/..//lightning-formatted-text");
+    public static final By LEAD_NAME = By.xpath("//div[contains(@class, 'entityNameTitle')]/..//lightning-formatted-name");
     public static final By EDIT_BUTTON = By.xpath("//button[@name='Edit']");
 
-    public AccountPage(WebDriver driver) {
+    public LeadPage(WebDriver driver) {
         super(driver);
     }
 
@@ -30,14 +30,14 @@ public class AccountPage extends BasePage{
         return driver.findElement(PAGE_TITLE).getText();
     }
 
-    @Step("Getting account name")
-    public String getAccountName() {
-        return driver.findElement(ACCOUNT_NAME).getText();
+    @Step("Getting lead name")
+    public String getLeadName() {
+        return driver.findElement(LEAD_NAME).getText();
     }
 
     @Step("Clicking edit button")
     public void clickEditButton() {
-        log.info("Clicking edit account button");
+        log.info("Clicking edit lead button");
         driver.findElement(EDIT_BUTTON).click();
     }
 }
