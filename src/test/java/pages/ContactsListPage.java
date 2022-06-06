@@ -4,6 +4,7 @@ import dto.Contact;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 @Log4j2
@@ -38,5 +39,16 @@ public class ContactsListPage extends BasePage{
     @Step("Opening contact")
     public void openContact(Contact contact) {
         driver.findElement(By.xpath(String.format(contactName, contact.getLastName()))).click();
+    }
+
+    @Step("Looking if contact is in contacts list")
+    public boolean isContactLocatedOnPage(Contact contact) {
+        try {
+            driver.findElement(By.xpath(String.format("//a[@title='%s']", contact.getSalutation() +
+                    contact.getFirstName() + contact.getLastName()))).isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+        return true;
     }
 }

@@ -4,6 +4,7 @@ import dto.Account;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 @Log4j2
@@ -37,5 +38,15 @@ public class AccountsListPage extends BasePage{
     @Step("Opening account")
     public void openAccount(Account account) {
         driver.findElement(By.xpath(String.format(accountName, account.getAccountName()))).click();
+    }
+
+    @Step("Looking if account is in accounts list")
+    public boolean isAccountLocatedOnPage(Account account) {
+        try {
+            driver.findElement(By.xpath(String.format("//a[@title='%s']", account.getAccountName()))).isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+        return true;
     }
 }

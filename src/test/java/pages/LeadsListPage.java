@@ -4,6 +4,7 @@ import dto.Lead;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 @Log4j2
@@ -38,5 +39,16 @@ public class LeadsListPage extends BasePage{
     @Step("Opening lead")
     public void openLead(Lead lead) {
         driver.findElement(By.xpath(String.format(leadName, lead.getLastName()))).click();
+    }
+
+    @Step("Looking if lead is in leads list")
+    public boolean isLeadLocatedOnPage(Lead lead) {
+        try {
+            driver.findElement(By.xpath(String.format("//a[@title='%s']", lead.getSalutation() +
+                    lead.getFirstName() + lead.getLastName()))).isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+        return true;
     }
 }

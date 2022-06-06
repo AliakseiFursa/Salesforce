@@ -38,9 +38,16 @@ public class DropDown {
         }
     }
 
-    public void selectAction(String option) {
-        driver.findElement(By.xpath(String.format("//tbody//a[text()='%s']/ancestor::tr//li[contains(@class, 'oneActionsDropDown')]//a", label))).click();
-        driver.findElement(By.xpath(String.format("//div[@title='%s']", option))).click();
+    public void selectActionOnListPage(String option) {
+        driver.findElement(By.xpath(String.format("//a[text()='%s']/ancestor::tr//a[@role='button']", label))).click();
+        driver.findElement(By.xpath(String.format("//div[contains(@class, 'branding-actions')]//a[@title='%s']", option))).click();
     }
 
+    public void selectActionOnEntityPage(String option) {
+        WebElement element = driver.findElement(By.xpath("//span[text()='Show more actions']//ancestor::button"));
+        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        executor.executeScript("arguments[0].click();", element);
+        driver.findElement(By.xpath(String.format("//a[@name='%s']", option))).click();
+    }
 }
+

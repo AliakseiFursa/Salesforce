@@ -14,7 +14,7 @@ public abstract class BasePage {
 
     WebDriver driver;
     WebDriverWait wait;
-    String baseURL = "https://tms3.my.salesforce.com/";
+    String baseURL = "https://tms1.my.salesforce.com/";
     String newAccountModalURL = baseURL + "lightning/o/Account/new?count=1&nooverride=" +
             "1&useRecordTypeCheck=1&navigationLocation=LIST_VIEW&uid=164935814282050681&backgroundContext=" +
             "%2Flightning%2Fo%2FAccount%2Flist%3FfilterName%3DRecent";
