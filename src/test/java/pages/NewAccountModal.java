@@ -10,7 +10,7 @@ import wrappers.Input;
 import wrappers.TextArea;
 
 @Log4j2
-public class NewAccountModal extends BasePage{
+public class NewAccountModal extends BasePage {
 
     public static final By SAVE_BUTTON = By.xpath("//div[contains(@class, 'modal-body')]//button[@title='Save']");
     public static final By ERROR_MESSAGE = By.xpath("//div[contains(@class, 'modal-body')]//div[contains(@class, 'forcePageError')]//li");

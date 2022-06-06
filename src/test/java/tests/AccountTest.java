@@ -4,7 +4,7 @@ import dto.Account;
 import dto.AccountFactory;
 import org.testng.annotations.Test;
 
-public class AccountTest extends BaseTest{
+public class AccountTest extends BaseTest {
 
     @Test(description = "Test of creating new account with all possible information filled in")
     public void newAccountShouldBeCreated() {

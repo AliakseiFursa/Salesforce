@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import wrappers.DropDown;
 
 @Log4j2
-public class ContactPage extends BasePage{
+public class ContactPage extends BasePage {
 
     public static final By PAGE_TITLE = By.xpath("//div[contains(@class, 'entityNameTitle')]");
     public static final By CONTACT_NAME = By.xpath("//span[text()='Name']//ancestor::" +

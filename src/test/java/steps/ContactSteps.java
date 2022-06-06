@@ -15,7 +15,6 @@ import pages.NewContactModal;
 import java.time.Duration;
 
 import static org.testng.Assert.*;
-import static org.testng.Assert.assertEquals;
 
 @Log4j2
 public class ContactSteps {

@@ -9,17 +9,17 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 @Log4j2
-public class LoginPage extends BasePage{
+public class LoginPage extends BasePage {
 
+    public static final By ERROR_MESSAGE = By.id("error");
     @FindBy(id = "username")
     WebElement userInput;
     @FindBy(id = "password")
     WebElement passwordInput;
     @FindBy(id = "Login")
     WebElement loginButton;
-    public static final By ERROR_MESSAGE = By.id("error");
 
-    public LoginPage (WebDriver driver) {
+    public LoginPage(WebDriver driver) {
         super(driver);
     }
 

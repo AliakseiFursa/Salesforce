@@ -26,12 +26,12 @@ public class Input {
             driver.findElement(By.xpath
                     (String.format("//span[text()='%s']/ancestor::div[contains(@class, 'uiInput')]//input", label)
                     )).sendKeys(text);
-        }else if (objectType.equalsIgnoreCase("Contact")) {
+        } else if (objectType.equalsIgnoreCase("Contact")) {
             driver.findElement(By.xpath
                     (String.format("//label[text()='%s']/..//input", label))).clear();
             driver.findElement(By.xpath
                     (String.format("//label[text()='%s']/..//input", label))).sendKeys(text);
-        }else if (objectType.equalsIgnoreCase("Lead")) {
+        } else if (objectType.equalsIgnoreCase("Lead")) {
             driver.findElement(By.xpath
                     (String.format("//label[text()='%s']/..//input", label))).clear();
             driver.findElement(By.xpath

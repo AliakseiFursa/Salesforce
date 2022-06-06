@@ -4,7 +4,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class SalesNavigationMenuBarPage extends BasePage{
+public class SalesNavigationMenuBarPage extends BasePage {
 
     public static final By PAGE_TITLE = By.xpath("//div[contains(@class, 'slds-context-bar')]//span[text()='Sales']");
 

@@ -4,7 +4,7 @@ import dto.Lead;
 import dto.LeadFactory;
 import org.testng.annotations.Test;
 
-public class LeadTest extends BaseTest{
+public class LeadTest extends BaseTest {
 
     @Test(description = "Test of creating new lead with all possible information filled in")
     public void newLeadShouldBeCreated() {

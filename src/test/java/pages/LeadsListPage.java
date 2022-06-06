@@ -8,7 +8,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 @Log4j2
-public class LeadsListPage extends BasePage{
+public class LeadsListPage extends BasePage {
 
     public static final By PAGE_TITLE = By.xpath("//div[contains(@class, 'slds-breadcrumb__item')]//span[text()='Leads']");
     public static final By NEW_LEAD_BUTTON = By.cssSelector("a[title=New]");

@@ -26,14 +26,14 @@ public class TextArea {
             driver.findElement(By.xpath
                     (String.format("//div[contains(@class, 'modal-body')]//span[text()='%s']/" +
                             "ancestor::div[contains(@class, 'uiInputTextArea ')]//textarea", label))).sendKeys(text);
-        }else if (objectType.equalsIgnoreCase("Contact")) {
+        } else if (objectType.equalsIgnoreCase("Contact")) {
             driver.findElement(By.xpath
                     (String.format("//div[contains(@class, 'modal-body')]//label[text()='%s']/..//textarea", label)
                     )).clear();
             driver.findElement(By.xpath
                     (String.format("//div[contains(@class, 'modal-body')]//label[text()='%s']/..//textarea", label)
                     )).sendKeys(text);
-        }else if (objectType.equalsIgnoreCase("Lead")) {
+        } else if (objectType.equalsIgnoreCase("Lead")) {
             driver.findElement(By.xpath
                     (String.format("//div[contains(@class, 'modal-body')]//label[text()='%s']/..//textarea", label)
                     )).clear();

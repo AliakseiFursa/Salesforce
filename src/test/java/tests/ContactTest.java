@@ -4,7 +4,7 @@ import dto.Contact;
 import dto.ContactFactory;
 import org.testng.annotations.Test;
 
-public class ContactTest extends BaseTest{
+public class ContactTest extends BaseTest {
 
     @Test(description = "Test of creating new contact with all possible information filled in")
     public void newContactShouldBeCreated() {

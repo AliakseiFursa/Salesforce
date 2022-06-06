@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 @Log4j2
-public class DeleteEntityModal extends BasePage{
+public class DeleteEntityModal extends BasePage {
 
     public static final By DELETE_BUTTON = By.xpath("//div[contains(@class, 'modal-container')]//span[text()='Delete']");
 

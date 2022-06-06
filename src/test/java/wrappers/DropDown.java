@@ -24,14 +24,14 @@ public class DropDown {
         if (objectType.equalsIgnoreCase("Account")) {
             WebElement element = driver.findElement(By.xpath(
                     String.format("//span[text()='%s']/ancestor::div[contains(@class, 'uiInput')]//a", label)));
-            JavascriptExecutor executor = (JavascriptExecutor)driver;
+            JavascriptExecutor executor = (JavascriptExecutor) driver;
             executor.executeScript("arguments[0].click();", element);
             driver.findElement(By.cssSelector(String.format("a[title=%s]", option))).click();
-        }else if (objectType.equalsIgnoreCase("Contact")) {
+        } else if (objectType.equalsIgnoreCase("Contact")) {
             driver.findElement(By.xpath(
                     String.format("//label[text()='%s']/..//span", label))).click();
             driver.findElement(By.xpath(String.format("//span[@title='%s']", option))).click();
-        }else if (objectType.equalsIgnoreCase("Lead")) {
+        } else if (objectType.equalsIgnoreCase("Lead")) {
             driver.findElement(By.xpath(
                     String.format("//label[text()='%s']/..//span", label))).click();
             driver.findElement(By.xpath(String.format("//span[@title='%s']", option))).click();
@@ -45,7 +45,7 @@ public class DropDown {
 
     public void selectActionOnEntityPage(String option) {
         WebElement element = driver.findElement(By.xpath("//span[text()='Show more actions']//ancestor::button"));
-        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
         executor.executeScript("arguments[0].click();", element);
         driver.findElement(By.xpath(String.format("//a[@name='%s']", option))).click();
     }
