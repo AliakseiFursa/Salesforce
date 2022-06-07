@@ -9,24 +9,33 @@ public class Input {
 
     WebDriver driver;
     String label;
-    String type;
+    String objectType;
 
-    public Input(WebDriver driver, String label, String type) {
+    public Input(WebDriver driver, String label, String objectType) {
         this.driver = driver;
         this.label = label;
-        this.type = type;
+        this.objectType = objectType;
     }
 
     public void write(String text) {
         log.info("Writing {} into {}", text, label);
-        if (type.equalsIgnoreCase("Account")) {
+        if (objectType.equalsIgnoreCase("Account")) {
+            driver.findElement(By.xpath
+                    (String.format("//span[text()='%s']/ancestor::div[contains(@class, 'uiInput')]//input", label)
+                    )).clear();
             driver.findElement(By.xpath
                     (String.format("//span[text()='%s']/ancestor::div[contains(@class, 'uiInput')]//input", label)
                     )).sendKeys(text);
-        }else if (type.equalsIgnoreCase("Contact")) {
+        } else if (objectType.equalsIgnoreCase("Contact")) {
             driver.findElement(By.xpath
-                    (String.format("//label[text()='%s']/..//input", label)
-                    )).sendKeys(text);
+                    (String.format("//label[text()='%s']/..//input", label))).clear();
+            driver.findElement(By.xpath
+                    (String.format("//label[text()='%s']/..//input", label))).sendKeys(text);
+        } else if (objectType.equalsIgnoreCase("Lead")) {
+            driver.findElement(By.xpath
+                    (String.format("//label[text()='%s']/..//input", label))).clear();
+            driver.findElement(By.xpath
+                    (String.format("//label[text()='%s']/..//input", label))).sendKeys(text);
         }
     }
 

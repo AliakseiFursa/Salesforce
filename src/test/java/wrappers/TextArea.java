@@ -9,23 +9,37 @@ public class TextArea {
 
     WebDriver driver;
     String label;
-    String type;
+    String objectType;
 
-    public TextArea(WebDriver driver, String label, String type) {
+    public TextArea(WebDriver driver, String label, String objectType) {
         this.driver = driver;
         this.label = label;
-        this.type = type;
+        this.objectType = objectType;
     }
 
     public void write(String text) {
         log.info("Writing {} into {}", text, label);
-        if (type.equalsIgnoreCase("Account")) {
+        if (objectType.equalsIgnoreCase("Account")) {
+            driver.findElement(By.xpath
+                    (String.format("//div[contains(@class, 'modal-body')]//span[text()='%s']/" +
+                            "ancestor::div[contains(@class, 'uiInputTextArea ')]//textarea", label))).clear();
             driver.findElement(By.xpath
                     (String.format("//div[contains(@class, 'modal-body')]//span[text()='%s']/" +
                             "ancestor::div[contains(@class, 'uiInputTextArea ')]//textarea", label))).sendKeys(text);
-        }else if (type.equalsIgnoreCase("Contact")) {
+        } else if (objectType.equalsIgnoreCase("Contact")) {
             driver.findElement(By.xpath
-                    (String.format("//div[contains(@class, 'modal-body')]//label[text()='%s']/..//textarea", label))).sendKeys(text);
+                    (String.format("//div[contains(@class, 'modal-body')]//label[text()='%s']/..//textarea", label)
+                    )).clear();
+            driver.findElement(By.xpath
+                    (String.format("//div[contains(@class, 'modal-body')]//label[text()='%s']/..//textarea", label)
+                    )).sendKeys(text);
+        } else if (objectType.equalsIgnoreCase("Lead")) {
+            driver.findElement(By.xpath
+                    (String.format("//div[contains(@class, 'modal-body')]//label[text()='%s']/..//textarea", label)
+                    )).clear();
+            driver.findElement(By.xpath
+                    (String.format("//div[contains(@class, 'modal-body')]//label[text()='%s']/..//textarea", label)
+                    )).sendKeys(text);
         }
     }
 }

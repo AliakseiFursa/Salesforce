@@ -1,46 +1,41 @@
 package tests;
 
 import dto.Contact;
+import dto.ContactFactory;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
-
-public class ContactTest extends BaseTest{
+public class ContactTest extends BaseTest {
 
     @Test(description = "Test of creating new contact with all possible information filled in")
     public void newContactShouldBeCreated() {
-        loginSteps.login("alex.fursa89-gtaj@force.com", "FireFox_1989");
-        assertTrue(salesNavigationMenuBarPage.isPageOpened(), "Home page wasn't opened");
-        Contact contact = Contact.builder()
-                .salutation("Mr.")
-                .firstName("Al")
-                .lastName("Fur")
-                .accountName("TeachMeSkills")
-                .phone("2235616")
-                .description("Good boy")
-                .mailingStreet("Minsk")
-                .build();
+        loginSteps.login(user, password);
+        Contact contact = ContactFactory.getContact("Mr.", "Hello", "", "Other",
+                "10/11/1988");
         contactSteps.create(contact);
-        assertTrue(contactPage.isPageOpened(), "Contact page wasn't opened");
-        assertEquals(contactPage.getContactName(), "Mr. Al Fur", "Contact name doesn't match");
+        contactSteps.validateContactInformation(contact);
     }
 
     @Test(description = "Negative test on getting an error message when necessary information wasn't filled in")
     public void errorMessageShouldBeDisplayedIfNecessaryInformationIsEmpty() {
-        loginSteps.login("alex.fursa89-gtaj@force.com", "FireFox_1989");
-        assertTrue(salesNavigationMenuBarPage.isPageOpened(), "Home page wasn't opened");
-        Contact contact = Contact.builder()
-                .salutation("Mr.")
-                .firstName("Al")
-                .lastName("")
-                .accountName("TeachMeSkills")
-                .phone("2235616")
-                .description("Good boy")
-                .mailingStreet("Minsk")
-                .build();
+        loginSteps.login(user, password);
+        Contact contact = ContactFactory.getContact("Mr.", "Hello", "", "Other",
+                "10/11/1988");
+        contact.setLastName("");
         contactSteps.create(contact);
-        assertEquals(newContactModal.getErrorMessage(), "We hit a snag.",
-                "Error message doesn't match or wasn't detected");
+        contactSteps.validateErrorMessageBeingDisplayed();
+    }
+
+    @Test(description = "Test of creating, validating, editing and deleting of contact")
+    public void createReadEditDeleteContact() {
+        loginSteps.login(user, password);
+        Contact contact = ContactFactory.getContact("Mr.", "Hello", "", "Other",
+                "10/11/1988");
+        contactSteps.create(contact);
+        contactSteps.validateContactInformation(contact);
+        contact.setTitle("Hello");
+        contact.setPhone("125.568.485");
+        contactSteps.edit(contact);
+        contactSteps.validateContactInformation(contact);
+        contactSteps.deleteFromContactPage(contact);
     }
 }

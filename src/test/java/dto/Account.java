@@ -10,13 +10,23 @@ import lombok.Data;
 public class Account {
 
     String accountName;
-    String website;
-    String type;
+    String parentAccount;
     String phone;
     String fax;
-    String parentAccount;
+    String website;
+    String type;
     String industry;
     String employees;
     String annualRevenue;
     String description;
+    String billingStreet;
+    String billingCity;
+    String billingZipCode;
+    String billingState;
+    String billingCountry;
+    String shippingStreet;
+    String shippingCity;
+    String shippingZipCode;
+    String shippingState;
+    String shippingCountry;
 }
